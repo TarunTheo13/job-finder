@@ -23,7 +23,7 @@ firecrawl_api_key = os.getenv("FIRECRAWL_API_KEY")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Set the jobs page URL
-jobs_page_url = "https://openai.com/careers/search"
+jobs_page_url = ["https://openai.com/careers/search", "https://www.workatastartup.com/jobs"]
 
 # Resume
 resume_paste = """"
