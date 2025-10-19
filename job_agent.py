@@ -39,6 +39,8 @@ async def scrape_and_analyze_jobs(resume: str, jobs_page_url: str, num_jobs: int
     """
     Scrape jobs from the provided URL and analyze them against the resume.
     """
+    print(f"Starting job analysis for URL: {jobs_page_url}")
+    print(f"Requesting {num_jobs} jobs")
     try:
         # Scrape the jobs page
         response = requests.post(
@@ -59,8 +61,9 @@ async def scrape_and_analyze_jobs(resume: str, jobs_page_url: str, num_jobs: int
         result = response.json()
         if not result.get('success'):
             raise HTTPException(status_code=400, detail=f"Failed to scrape jobs page: {result.get('message', 'Unknown error')}")
-            
+        
         html_content = result['data']['markdown']
+        print("Successfully scraped jobs page, extracting job links...")
         
         # Extract apply links using OpenAI
         prompt = f"""
@@ -81,6 +84,7 @@ async def scrape_and_analyze_jobs(resume: str, jobs_page_url: str, num_jobs: int
         )
         
         apply_links = json.loads(completion.choices[0].message.content.strip())['apply_links']
+        print(f"Found {len(apply_links)} job links, analyzing each job...")
         
         # Extract job details
         extracted_data = []
@@ -119,6 +123,7 @@ async def scrape_and_analyze_jobs(resume: str, jobs_page_url: str, num_jobs: int
                 result = response.json()
                 if result.get('success'):
                     extracted_data.append(result['data']['extract'])
+                    print(f"Successfully extracted data for job: {result['data']['extract'].get('job_title', 'Unknown Title')}")
         
         # Analyze jobs against resume
         analysis_prompt = f"""

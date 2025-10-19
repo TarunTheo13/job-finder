@@ -28,8 +28,16 @@ def analyze_jobs(resume: str, jobs_url: str = None, num_jobs: int = 3):
     }
     
     try:
+        print(f"\nMaking request to {url}")
+        print(f"Headers: {headers}")
+        print(f"Payload: {json.dumps(payload, indent=2)}")
+        
         # Make the API request
-        response = requests.post(url, json=payload, headers=headers)
+        # Use a longer timeout since job scraping and analysis can take time
+        response = requests.post(url, json=payload, headers=headers, timeout=180)  # 3 minutes timeout
+        print(f"\nResponse status code: {response.status_code}")
+        print(f"Response headers: {response.headers}")
+        
         response.raise_for_status()  # Raise an exception for bad status codes
         
         # Parse and print the results
