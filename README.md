@@ -1,6 +1,6 @@
 # Job Finder
 
-Uses firecrawl and OpenAI to scrape for jobs relevant to the CV.
+Uses Firecrawl and OpenAI to scrape for jobs relevant to the CV provided.
 
 ## Setup
 
