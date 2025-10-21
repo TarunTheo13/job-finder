@@ -1,9 +1,8 @@
 # Python
-venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
 env/
 build/
@@ -22,10 +21,10 @@ wheels/
 .installed.cfg
 *.egg
 
-# Environment variables
+# Virtual Environment
+venv/
+ENV/
 .env
-.env.local
-.env.*.local
 
 # IDE
 .idea/
@@ -37,6 +36,17 @@ wheels/
 .docker/
 docker-compose.override.yml
 
-# System
+# Git
+.git
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# Local development
 .DS_Store
-Thumbs.db
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

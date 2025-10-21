@@ -2,6 +2,50 @@
 
 Uses firecrawl and OpenAI to scrape for jobs relevant to the CV.
 
+## Setup
+
+### Using Docker (Recommended)
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Edit `.env` and add your API keys:
+- `FIRECRAWL_API_KEY`: Your Firecrawl API key
+- `OPENAI_API_KEY`: Your OpenAI API key
+
+3. Build and run with Docker Compose:
+```bash
+docker-compose up --build
+```
+
+The API will be available at http://localhost:8000
+
+### Manual Setup
+
+1. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Copy and configure environment variables:
+```bash
+cp .env.example .env
+# Edit .env with your API keys
+```
+
+4. Run the server:
+```bash
+python job_agent.py
+```
+
 ## API Usage Example
 
 ```bash
